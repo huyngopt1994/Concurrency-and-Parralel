@@ -14,11 +14,13 @@ def main():
 	if not client_id:
 		raise Exception("Couldn't find IMGUR_CLIENT environment variable")
 	download_dir = setup_download_dir()
-	links = [l for l in get_links(client_id) if l.endswith('.jpg')]
+	links = [l for l in get_links(client_id) if l.endswith('.jpg') or l.endswith('.png')]
+	print (links)
 	for link in links:
 		download_link(download_dir, link)
 	print('Took {}s'.format(time() - st))
 
 if __name__ == '__main__':
-	#10.18704867362976s
+	#26.771100521087646
+
 	main()

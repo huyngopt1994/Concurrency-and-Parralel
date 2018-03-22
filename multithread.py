@@ -20,12 +20,12 @@ def main():
 	st = time()
 	client_id = 'ee43c9d73f7dcc9'
 	download_dir = setup_download_dir()
-	links = [l for l in get_links(client_id) if l.endswith('.jpg')]
+	links = [l for l in get_links(client_id) if l.endswith('.jpg') or l.endswith('.png')]
 	#Create a queue to communicate with worker threads
 	queue = Queue()
 
 	#Create 4 worker threads
-	for x in range(8):
+	for x in range(15):
 		worker = DownloadWorker(queue,x)
 		worker.daemon = True
 		worker.start()
@@ -37,5 +37,5 @@ def main():
 	# Cause the main thread to wait for the queue to finish the processing all the tasks
 	queue.join()
 	print('Took {}'.format(time() - st))
-#because we have 7 pictures so 7 threads will be the best
+#because we use 15 threads =>2.7s
 main()

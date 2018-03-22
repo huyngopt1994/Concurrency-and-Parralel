@@ -29,4 +29,5 @@ def setup_download_dir():
 	download_dir = Path('images')
 	if not download_dir.exists():
 		download_dir.mkdir()
+
 	return download_dir
